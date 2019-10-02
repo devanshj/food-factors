@@ -3,15 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^5.5.0",
+    "@types/react": "^16.9.3",
+    "@types/react-cache": "^2.0.1",
+    "@types/react-dom": "^16.9.1",
+    "craco-linaria": "^1.1.1",
+    "highcharts": "^7.2.0",
+    "linaria": "file:../linaria-fixed",
+    "polished": "^3.4.1",
     "react": "^16.10.1",
+    "react-cache": "^2.0.0-alpha.1",
     "react-dom": "^16.10.1",
-    "react-scripts": "3.1.2"
+    "react-scripts": "3.1.2",
+    "typescript": "^3.6.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
   },
   "eslintConfig": {
     "extends": "react-app"
