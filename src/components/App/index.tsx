@@ -25,7 +25,8 @@ const App = () => {
 					onChange={setStrategy}
 					options={[
 						"Categories influenced per factor",
-						"Factor influence per category"
+						"Factor influence per category",
+						"Factor influence averaged"
 					]}
 					label="Strategy"
 				/>

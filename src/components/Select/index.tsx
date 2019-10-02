@@ -26,7 +26,7 @@ const Select = ({ options, onChange, value, label }: {
 				background-position: calc(100% - 8px) 65%;
 				border: 2px solid #000;
 				border-radius: 4px;
-				margin-bottom: ${rem(6)};
+				margin-bottom: ${rem(10)};
 			`}
 			style={{"--max-chars": Math.max(...options.map(l => l.length))}}
 			value={value}
