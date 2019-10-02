@@ -26,7 +26,7 @@ export const getFactor =
 		.map((_, c) =>
 			mean(
 				data
-				.map(row => row[3 + f + c])
+				.map(row => row[3 + f * factors.length + c])
 			)
 		);
 
@@ -36,7 +36,7 @@ export const getCategory =
 		.map((_, f) =>
 			mean(
 				data
-				.map(row => row[3 + c * factors.length + f])
+				.map(row => row[3 + f * factors.length + c])
 			)
 		)
 
