@@ -20,7 +20,6 @@ const App = () => {
         surveyData === null
             ? <p>Getting data from speadsheet....</p>
             : <SurveyDataContext.Provider value={surveyData}>
-				Now test 2
                 <Select
 					value={strategy}
 					onChange={setStrategy}
