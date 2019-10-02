@@ -13,7 +13,6 @@ const Strategy0 = () => {
 
 	let categoryScores = 
 		getFactor(factor, data)
-		.map(mean)
 		.map(precision(4));
 	
     return <div>
@@ -32,13 +31,13 @@ const Strategy0 = () => {
 				breaks: [{
 					from: 0,
 					to: Math.min(...categoryScores),
-					breakSize: 0.1
+					breakSize: 0
 				}, {
 					from: Math.max(...categoryScores),
 					to: 5,
 					breakSize: 0
 				}],
-				tickInterval: 0.1
+				tickInterval: 0.01
 			}}
 			legend={{ enabled: false }}
 			plotOptions={{

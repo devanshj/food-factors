@@ -11,14 +11,9 @@ const Strategy2 = () => {
 
 	let factorScores =
 		factors
-		.map((_, f) =>
-			getFactor(f, data)
-			.map(mean)
-		)
+		.map((_, f) => getFactor(f, data))
 		.map(mean)
 		.map(precision(4))
-
-	console.log(factorScores);
 
 	return <div>
 		<HighChart
@@ -30,13 +25,13 @@ const Strategy2 = () => {
 				breaks: [{
 					from: 0,
 					to: Math.min(...factorScores),
-					breakSize: 0.1
+					breakSize: 0
 				}, {
 					from: Math.max(...factorScores),
 					to: 5,
 					breakSize: 0
 				}],
-				tickInterval: 0.1
+				tickInterval: 0.01
 			}}
 			legend={{ enabled: false }}
 			plotOptions={{

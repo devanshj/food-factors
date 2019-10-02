@@ -22,11 +22,23 @@ export type SurveyData = (number|null)[][];
 
 export const getFactor =
 	(f: number, data: SurveyData) => 
-		categories.map((_, c) => data[3 + f + c]);
+		categories
+		.map((_, c) =>
+			mean(
+				data
+				.map(row => row[3 + f + c])
+			)
+		);
 
 export const getCategory =
 	(c: number, data: SurveyData) =>
-		factors.map((_, f) => data[3 + c * factors.length + f])
+		factors
+		.map((_, f) =>
+			mean(
+				data
+				.map(row => row[3 + c * factors.length + f])
+			)
+		)
 
 export const sum = (xs: SurveyData[number]) =>
 	xs

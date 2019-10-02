@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import HighChart from "../HighChart";
 import { categories, getCategory, mean, precision, factors } from "../../survey-data";
 import Select from "../Select";
@@ -13,7 +13,6 @@ const Strategy1 = () => {
 
 	let factorScores = 
 		getCategory(category, data)
-		.map(mean)
 		.map(precision(4));
 
 	return <div>
@@ -32,13 +31,13 @@ const Strategy1 = () => {
 				breaks: [{
 					from: 0,
 					to: Math.min(...factorScores),
-					breakSize: 0.1
+					breakSize: 0
 				}, {
 					from: Math.max(...factorScores),
 					to: 5,
 					breakSize: 0
 				}],
-				tickInterval: 0.1
+				tickInterval: 0.01
 			}}
 			legend={{ enabled: false }}
 			plotOptions={{

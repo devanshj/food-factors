@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
 import SurveyDataContext from "../../contexts/SurveyDataContext";
-import { fetchSurveyData } from "../../survey-data";
+import { fetchSurveyData, mean, getFactor } from "../../survey-data";
 
 import "./index.css"
 import Select from "../Select";
 import Strategy from "../Strategy";
-import { isDev } from "../../utils";
-
 
 const App = () => {
 	let [surveyData, setSurveyData] = useState(null as (number|null)[][] | null);
-	let [strategy, setStrategy] = useState(1);
+	let [strategy, setStrategy] = useState(0);
 
     useEffect(() => {
 		fetchSurveyData().then(setSurveyData);
-	}, [])
+	}, []);
 
     return (
         surveyData === null
