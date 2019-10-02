@@ -24,7 +24,7 @@ const Strategy2 = () => {
 				title: { text: "Influence (0-5)" },
 				breaks: [{
 					from: 0,
-					to: Math.min(...factorScores),
+					to: Math.min(...factorScores) - 0.05,
 					breakSize: 0
 				}, {
 					from: Math.max(...factorScores),
