@@ -1,4 +1,4 @@
-import { use } from "../utils";
+import { use, isNotNull } from "../utils";
 
 export const factors = [
 	"Quality",
@@ -18,16 +18,28 @@ export const categories = [
 	"Snacks & Beverages"
 ];
 
+export type SurveyData = (number|null)[][];
+
 export const getFactor =
-	(f: number, data: number[][]) => 
+	(f: number, data: SurveyData) => 
 		categories.map((_, c) => data[3 + f + c]);
 
 export const getCategory =
-	(c: number, data: number[][]) =>
+	(c: number, data: SurveyData) =>
 		factors.map((_, f) => data[3 + c * factors.length + f])
 
-export const mean = (xs: number[]) =>
-	xs.reduce((a, b) => a + b) / xs.length
+export const sum = (xs: SurveyData[number]) =>
+	xs
+	.filter(isNotNull)
+	.reduce((a, b) => a + b, 0)
+
+export const mean = (xs: SurveyData[number]) =>
+	use(xs.filter(isNotNull))
+	.as(xs => sum(xs) / xs.length)
+
+export const percentagify = (xs: SurveyData[number]) =>
+	use(sum(xs))
+	.as(t => xs.map(x => x !== null ? x * 100 / t : null))
 
 export const precision = (p: number) => (n: number) => Number(n.toPrecision(p))
 
@@ -39,7 +51,7 @@ export const fetchSurveyData = (useCached = false) => {
 			data === null
 				? null
 				: JSON.parse(data)
-		) as number[][] | null;
+		) as SurveyData | null;
 
 	const fetchFromSpreadSheet = () =>
 		fetch("https://docs.google.com/spreadsheets/d/18ZbIPHpoysP6GZJ8ZxcyrQqw4JiQCMLJWrQ9bsAh0nw/export?format=csv")
@@ -47,11 +59,11 @@ export const fetchSurveyData = (useCached = false) => {
 		.then(text =>
 			text
 			.split("\n")
-			.slice(2)
+			.slice(2, 332)
 			.map(row =>
 				row
 				.split(",")
-				.map(Number)
+				.map(x => x === "" ? null : Number(x))
 			)
 		).then(data => {
 			localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));

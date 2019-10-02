@@ -9,12 +9,12 @@ import { isDev } from "../../utils";
 
 
 const App = () => {
-	let [surveyData, setSurveyData] = useState(null as number[][] | null);
+	let [surveyData, setSurveyData] = useState(null as (number|null)[][] | null);
 	let [strategy, setStrategy] = useState(1);
 
     useEffect(() => {
-        fetchSurveyData(isDev()).then(setSurveyData)
-    }, [])
+		fetchSurveyData().then(setSurveyData);
+	}, [])
 
     return (
         surveyData === null
