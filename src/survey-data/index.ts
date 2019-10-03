@@ -19,26 +19,12 @@ export const categories = [
 ];
 
 export type SurveyData = (number|null)[][];
+export type SurveyDataRow = SurveyData[number];
 
-export const getFactor =
-	(f: number, data: SurveyData) => 
-		categories
-		.map((_, c) =>
-			mean(
-				data
-				.map(row => row[3 + f * factors.length + c])
-			)
-		);
-
-export const getCategory =
-	(c: number, data: SurveyData) =>
-		factors
-		.map((_, f) =>
-			mean(
-				data
-				.map(row => row[3 + f * factors.length + c])
-			)
-		)
+export const getFactorCategory =
+	(f: number, c: number) =>
+		(row: SurveyDataRow) =>
+			row[3 + f * factors.length + c]
 
 export const sum = (xs: SurveyData[number]) =>
 	xs
@@ -46,14 +32,14 @@ export const sum = (xs: SurveyData[number]) =>
 	.reduce((a, b) => a + b, 0)
 
 export const mean = (xs: SurveyData[number]) =>
-	use(xs.filter(isNotNull))
-	.as(xs => sum(xs) / xs.length)
+	xs.length === 0
+		? 0
+		: use(xs.filter(isNotNull)).as(
+			xs => sum(xs) / xs.length
+		)
 
-export const percentagify = (xs: SurveyData[number]) =>
-	use(sum(xs))
-	.as(t => xs.map(x => x !== null ? x * 100 / t : null))
-
-export const precision = (p: number) => (n: number) => Number(n.toPrecision(p))
+export const precision = (p: number) =>
+	(n: number) => Number(n.toPrecision(p))
 
 const LOCAL_STORAGE_KEY = "surveyData";
 export const fetchSurveyData = (useCached = false) => {	

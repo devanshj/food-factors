@@ -8,7 +8,7 @@ import Strategy from "../Strategy";
 
 const App = () => {
 	let [surveyData, setSurveyData] = useState(null as (number|null)[][] | null);
-	let [strategy, setStrategy] = useState(0);
+	let [strategy, setStrategy] = useState(3);
 
     useEffect(() => {
 		fetchSurveyData().then(setSurveyData);
@@ -24,7 +24,8 @@ const App = () => {
 					options={[
 						"Categories influenced per factor",
 						"Factor influence per category",
-						"Factor influence averaged"
+						"Factor influence averaged",
+						"Categories influenced"
 					]}
 					label="Strategy"
 				/>
