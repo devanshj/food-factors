@@ -84,19 +84,19 @@ const Document = () => {
 					),
 					tuple(
 						39, "Loyalty",
-						["0", "1", "2", "3", "4"],
-						[0, 1, 2, 3, 4],
+						["0", "1", "2", "3", "4", "5"],
+						[0, 1, 2, 3, 4, 5],
 						(x: number) => 5 - x
 					),
 					tuple(
 						40, "Health Consciousness",
-						["0", "1", "2", "3", "4"],
-						[0, 1, 2, 3, 4]
+						["0", "1", "2", "3", "4", "5"],
+						[0, 1, 2, 3, 4, 5]
 					),
 					tuple(
 						41, "Belief in Food News",
-						["0", "1", "2", "3", "4"],
-						[0, 1, 2, 3, 4]
+						["0", "1", "2", "3", "4", "5"],
+						[0, 1, 2, 3, 4, 5]
 					)
 				].map(([columnIndex, columnName, categories, values, transform]) =>
 					<HighChart
@@ -122,7 +122,9 @@ const Document = () => {
 								})
 							)
 						}
-						/>
+						divProps={{
+							className: css`margin-top: ${cm(1)}px`
+						}}/>
 				)}
 			</div>
 		)
