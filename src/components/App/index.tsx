@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SurveyDataContext from "../../contexts/SurveyDataContext";
 import { fetchSurveyData } from "../../survey-data";
-import Select from "../Select";
-import Strategy from "../Strategy";
 import Document from "../Document";
 
 import "./index.css"
@@ -21,18 +19,6 @@ const App = () => {
             ? <p>Getting data from speadsheet....</p>
             : <SurveyDataContext.Provider value={surveyData}>
 				<Document/>
-                {/* <Select
-					value={strategy}
-					onChange={setStrategy}
-					options={[
-						"Categories influenced per factor",
-						"Factor influence per category",
-						"Factor influence averaged",
-						"Categories influenced"
-					]}
-					label="Strategy"
-				/>
-				<Strategy value={strategy}/> */}
             </SurveyDataContext.Provider>
     )
 }
