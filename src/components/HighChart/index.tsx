@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import Highcharts, { Options, XAxisOptions } from "highcharts"
 import loadBrokenAxis from "highcharts/modules/broken-axis";
+import loadSerieslabel from "highcharts/modules/series-label";
 import { rem } from "polished";
 
 loadBrokenAxis(Highcharts);
+loadSerieslabel(Highcharts);
 
 Highcharts.setOptions({
 	colors: ["#000"],
