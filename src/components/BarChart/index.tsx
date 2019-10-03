@@ -1,6 +1,6 @@
 import React from "react";
 import HighChart from "../HighChart";
-import { SeriesColumnOptions, YAxisBreaksOptions } from "highcharts";
+import { SeriesColumnOptions } from "highcharts";
 
 const BarChart = ({ series, yAxisLabel, xAxisLabels, focusDifference }: { 
 	series: (Omit<SeriesColumnOptions, "type" | "data"> & { data: number[] })[],

@@ -1,10 +1,6 @@
 import React, { useContext } from "react";
-import HighChart from "../HighChart";
-import { mean, factors, getFactor, precision, categories, getFactorCategory } from "../../survey-data";
-import { css } from "linaria";
-import { rem } from "polished";
+import { mean, factors, precision, categories, getFactorCategory } from "../../survey-data";
 import SurveyDataContext from "../../contexts/SurveyDataContext";
-import { SeriesColumnOptions } from "highcharts";
 import BarChart from "../BarChart";
 
 const Strategy2 = () => {

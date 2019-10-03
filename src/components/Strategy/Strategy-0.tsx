@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import SurveyDataContext from "../../contexts/SurveyDataContext";
 import { factors, categories, mean, precision, getFactorCategory } from "../../survey-data";
 import Select from "../Select";
-import { fromKeyValues } from "../../utils";
 import BarChart from "../BarChart";
 
 const Strategy0 = () => {

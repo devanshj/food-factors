@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SurveyDataContext from "../../contexts/SurveyDataContext";
-import { fetchSurveyData, mean, getFactor } from "../../survey-data";
+import { fetchSurveyData } from "../../survey-data";
 
 import "./index.css"
 import Select from "../Select";
