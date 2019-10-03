@@ -12,13 +12,7 @@ import HighChart from "../HighChart";
 const Document = () => {
 	let data = useContext(SurveyDataContext);
 	let influenceRange = [0, 1, 2, 3, 4, 5];
-
-	useEffect(() => {
-		console.log(
-			data.sort((rA, rB) => rA[0]! - rB[0]!)
-		)
-	}, [data])
-
+	
 	const dispatchResize =
 		() => window.dispatchEvent(new Event("resize"));
 
