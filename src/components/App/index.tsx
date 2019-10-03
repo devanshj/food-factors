@@ -8,7 +8,6 @@ import { isDev } from "../../utils";
 
 const App = () => {
 	let [surveyData, setSurveyData] = useState(null as (number|null)[][] | null);
-	let [strategy, setStrategy] = useState(3);
 
     useEffect(() => {
 		fetchSurveyData(isDev()).then(setSurveyData);

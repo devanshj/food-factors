@@ -25,12 +25,12 @@ const Document = () => {
 	useWindowEvent("beforeprint", () => {
 		document.body.classList.add("is-print");
 		dispatchResize();
-	}, []);
+	});
 
 	useWindowEvent("afterprint", () => {
 		document.body.classList.remove("is-print");
 		dispatchResize();
-	}, []);
+	});
 
 	return <>{
 		categories.map((categoryName, c) =>

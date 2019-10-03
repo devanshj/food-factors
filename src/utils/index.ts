@@ -10,13 +10,12 @@ export const isDev =
 
 export const useWindowEvent = <E extends keyof WindowEventMap>(
 	event: E,
-	listener: (event: WindowEventMap[E]) => void,
-	deps?: any[]
+	listener: (event: WindowEventMap[E]) => void
 ) => {
 	useEffect(() => {
 		window.addEventListener(event, listener);
 		return () => window.removeEventListener(event, listener);
-	}, deps);
+	}, [event, listener]);
 }
 
 export const isNotNull = <T>(x: T): x is Exclude<T, null> => x !== null
