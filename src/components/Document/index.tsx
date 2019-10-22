@@ -35,7 +35,7 @@ const Document = () => {
 					xAxisLabels={factors}
 					series={
 						influenceRange.map(vote => ({
-							color: lighten((5 - vote)/6, "#000"),
+							//color: lighten((5 - vote)/6, "#000"),
 							name: vote.toString(),
 							data: factors.map((_, f) =>
 								data

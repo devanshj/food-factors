@@ -8,7 +8,8 @@ loadBrokenAxis(Highcharts);
 loadSerieslabel(Highcharts);
 
 Highcharts.setOptions({
-	colors: ["#000"],
+	// colors: ["#000"],
+	colors: ["#106BA3", "#0D8050", "#BF7326", "#C23030", "#634DBF", "#00998C"],
 	...((axis: XAxisOptions) => ({ xAxis: axis, yAxis: axis }))(
 		{
 			lineWidth: 1,
