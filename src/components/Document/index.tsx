@@ -31,7 +31,7 @@ const Document = () => {
 			<div key={c} className={css`page-break-inside: avoid;`}>
 				<h1>{categoryName}</h1>
 				<BarChart
-					yAxisLabel="Votes"
+					yAxisLabel="% of votes"
 					xAxisLabels={factors}
 					series={
 						influenceRange.map(vote => ({
