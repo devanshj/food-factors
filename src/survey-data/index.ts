@@ -32,11 +32,11 @@ export const sum = (xs: SurveyData[number]) =>
 	.reduce((a, b) => a + b, 0)
 
 export const mean = (xs: SurveyData[number]) =>
-	xs.length === 0
-		? 0
-		: use(xs.filter(isNotNull)).as(
-			xs => sum(xs) / xs.length
-		)
+	use(xs.filter(isNotNull)).as(xs =>
+		xs.length === 0
+			? 0
+			: sum(xs) / xs.length
+	)
 
 export const precision = (p: number) =>
 	(n: number) => Number(n.toPrecision(p))

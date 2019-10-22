@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import SurveyDataContext from "../../contexts/SurveyDataContext";
-import { categories, factors, getFactorCategory, mean, precision } from "../../survey-data";
+import { categories, factors, getFactorCategory, mean, precision, SurveyDataRow } from "../../survey-data";
 import BarChart from "../BarChart";
 import { lighten } from "polished";
 import { useWindowEvent } from "../../utils";
@@ -27,10 +27,30 @@ const Document = () => {
 	});
 
 	return <>{
-		categories.map((categoryName, c) =>
-			<div key={c} className={css`page-break-inside: avoid;`}>
-				<h1>{categoryName}</h1>
-				<BarChart
+		[
+			...categories.map(
+				(categoryName, c) => ({
+					name: categoryName,
+					getFactor: (f: number) => getFactorCategory(f, c)
+				})
+			),
+			{
+				name: "Averaged",
+				getFactor: (f: number) => 
+					(row: SurveyDataRow) => {
+						let foo = mean(
+							categories
+							.map((_, c) => getFactorCategory(f, c)(row))
+						)
+						if (Number.isNaN(foo)) console.log(row);
+						return foo;
+					}
+			}
+		]
+		.map(({ name, getFactor }, i) =>
+			<div key={i} className={css`page-break-inside: avoid;`}>
+				<h1>{name}</h1>
+				{i !== categories.length && <BarChart
 					yAxisLabel="% of votes"
 					xAxisLabels={factors}
 					series={
@@ -39,20 +59,20 @@ const Document = () => {
 							name: vote.toString(),
 							data: factors.map((_, f) =>
 								data
-								.map(getFactorCategory(f, c))
+								.map(getFactor(f))
 								.filter(s => s === vote)
 								.length * 100 / data.length
 							).map(precision(4))
 						}))
 					}
 					height={cm(9)}
-					className={css`margin-top: ${cm(1)}px`}/>
+					className={css`margin-top: ${cm(1)}px`}/>}
 				<BarChart
 					yAxisLabel="Influence (0-5)"
 					xAxisLabels={factors}
 					series={[{ data: 
 						factors
-						.map((_, f) => data.map(getFactorCategory(f, c)))
+						.map((_, f) => data.map(getFactor(f)))
 						.map(mean)
 						.map(precision(4))
 					}]}
@@ -92,7 +112,7 @@ const Document = () => {
 						["0", "1", "2", "3", "4", "5"],
 						[0, 1, 2, 3, 4, 5]
 					)
-				].map(([columnIndex, columnName, categories, values, transform]) =>
+				].map(([columnIndex, columnName, categories, values, transform], i) =>
 					<HighChart
 						title={{ text: "" }}
 						chart={{ type: "line", height: cm(9) }}
@@ -108,7 +128,7 @@ const Document = () => {
 										.map(v =>
 											data
 											.filter(row => row[columnIndex] === v)
-											.map(getFactorCategory(f, c))
+											.map(getFactor(f))
 										)
 										.map(mean)
 										.map(transform || ((x: number) => x)),
@@ -118,7 +138,8 @@ const Document = () => {
 						}
 						divProps={{
 							className: css`margin-top: ${cm(1)}px`
-						}}/>
+						}}
+						key={i}/>
 				)}
 			</div>
 		)
