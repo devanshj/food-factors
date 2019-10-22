@@ -41,8 +41,8 @@ const Document = () => {
 								data
 								.map(getFactorCategory(f, c))
 								.filter(s => s === vote)
-								.length
-							)
+								.length * 100 / data.length
+							).map(precision(4))
 						}))
 					}
 					height={cm(9)}
